@@ -63,7 +63,7 @@ object HttpServer {
     def apply(request: HttpRequest) = {
       val response = new DefaultHttpResponse(HTTP_1_1, OK)
 
-      ThriftClient()
+      //ThriftClient()
 
       response.setContent(copiedBuffer("hello world", Utf8))
       Future.value(response)

@@ -2,7 +2,9 @@ package com.acme.Example
 
 import com.twitter.finagle.builder.ClientBuilder
 import com.twitter.finagle.http.Http
+import com.twitter.finagle.thrift.{ThriftClientBufferedCodec, ThriftClientFramedCodec}
 import java.net.InetSocketAddress
+
 import org.jboss.netty.handler.codec.http._
 import org.jboss.netty.handler.codec.http.HttpResponseStatus._
 import com.twitter.finagle.{Service, SimpleFilter}
@@ -38,7 +40,8 @@ object HttpClient {
   def main(args: Array[String]) {
     val clientWithoutErrorHandling: Service[HttpRequest, HttpResponse] = ClientBuilder()
       .codec(Http())
-      .hosts(new InetSocketAddress(8082))
+      //.codec(ThriftClientFramedCodec)
+      .hosts(new InetSocketAddress(8081))
       .hostConnectionLimit(1)
       .build()
 
